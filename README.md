@@ -1,3 +1,25 @@
 # Lab04-02
-# Link para o Diagrama de casos de uso: <>
-# Link para o Diagrama de componentes: <https://online.visual-paradigm.com/share.jsp?id=313539303935392d33>
+
+Curso: Engenharia de Software <br>
+Disciplina: Laboratório de Desenvolvimento de Software <br>
+Trabalho: Laboratório 2
+
+O Laboratório 2 será um sistema de aluguel de automóveis.
+
+## Integrantes
+
+* [Geovane De Freitas Queiroz](https://github.com/geovanemorcatti)
+* [Isabella Carine Cruz Nicácio](https://github.com/ibellacn)
+* [Lucas Moura Pereira](https://github.com/LucasMouraPereira123)
+
+## Orientador
+
+* José Laerte Pires Xavier
+
+## Sistema de Aluguel de Automóveis
+
+### Diagrama de Caso de Uso
+
+### Diagrama de Classe
+
+### Diagrama de Componentes
