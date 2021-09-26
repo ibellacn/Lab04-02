@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${agentDTO.getName()}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:text="'Olá, ' + ${agentDTO.getName()}"></p>
+<p>Alterar informações do perfil</p>
+<form action="#" th:action="@{'agent/update/{cnpj}'(cnpj=${agentDTO.getCnpj()})}" method="post" enctype="multipart/form-data">
+    <input type="text" name="password" placeholder="Senha" th:value="${agentDTO.getPassword()}">
+    <input type="text" name="name" placeholder="Nome" th:value="${agentDTO.getName()}">
+    <button type="submit">Submit</button>
+</form>
+<form action="delete" th:action="@{'agent/delete/{cnpj}'(cnpj=${agentDTO.getCnpj()})}" th:method="delete" >
+    <input type="hidden" name="_method" value="delete" />
+    <button type="submit" id="submitButton">Deletar Conta</button>
+</form>
+</body>
+</html>

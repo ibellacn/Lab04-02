@@ -1,11 +1,8 @@
 package br.com.lab0102.sistema_de_aluguel_de_veiculos.repositories;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import br.com.lab0102.sistema_de_aluguel_de_veiculos.models.VehiclesModel;
 
-import br.com.lab0102.sistema_de_aluguel_de_veiculos.model.VehiclesModel;
-
-@Repository
-public interface VehiclesRepository extends CrudRepository<VehiclesModel, Long> {
+public interface VehiclesRepository extends JpaRepository<VehiclesModel, Integer> {
 
 }

@@ -1,4 +1,4 @@
-package br.com.lab0102.sistema_de_aluguel_de_veiculos.model;
+package br.com.lab0102.sistema_de_aluguel_de_veiculos.models;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-@NamedQuery(name = "selecionaTodos", query = "Select v from Vehicle v")
+//@NamedQuery(name = "selecionaTodos", query = "Select v from Vehicle v")
 @Entity
 @Table(name = "vehicle")
 public class VehiclesModel implements Serializable {

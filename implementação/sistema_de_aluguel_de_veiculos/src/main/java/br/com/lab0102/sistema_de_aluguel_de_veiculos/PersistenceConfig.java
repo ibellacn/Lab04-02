@@ -25,7 +25,7 @@ public class PersistenceConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		
-		dataSource.setUrl("jdbc:mysql://localhost:3306/sistema?useSSL=true");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/aluguelveiculos?useSSL=true");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		
@@ -45,7 +45,7 @@ public class PersistenceConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(dataSource());
-		emf.setPackagesToScan("br.com.lab0102.sistema_de_aluguel_de_veiculos.model");
+		emf.setPackagesToScan("br.com.lab0102.sistema_de_aluguel_de_veiculos.models");
 		emf.setJpaVendorAdapter(jpaVendorApapter());
 		emf.setJpaProperties(jpaProperties());
 		return emf;
@@ -53,11 +53,11 @@ public class PersistenceConfig {
 	
 	private Properties jpaProperties() {
 		Properties properties = new Properties();
-		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-//		properties.put("hibernate.show_sql", "false");
+		properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+		properties.put("hibernate.show_sql", "false");
 //		properties.put("hibernate.hbm2ddl.auto", "validate");
 		properties.put("hibernate.show_sql", "true");
-//		properties.put("hibernate.hbm2ddl.auto", "update");
+		properties.put("hibernate.hbm2ddl.auto", "update");
 		return properties;
 	}
 	

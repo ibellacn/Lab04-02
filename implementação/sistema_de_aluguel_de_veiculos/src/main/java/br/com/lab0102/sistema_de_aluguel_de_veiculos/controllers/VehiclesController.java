@@ -1,4 +1,4 @@
-package br.com.lab0102.sistema_de_aluguel_de_veiculos.controller;
+package br.com.lab0102.sistema_de_aluguel_de_veiculos.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,15 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.lab0102.sistema_de_aluguel_de_veiculos.model.VehiclesModel;
+import br.com.lab0102.sistema_de_aluguel_de_veiculos.models.VehiclesModel;
 import br.com.lab0102.sistema_de_aluguel_de_veiculos.repositories.VehiclesRepository;
 
 @Controller
 @RequestMapping("/")
 public class VehiclesController {
-	
-	@Autowired
-	private VehiclesRepository vehiclesRepository;
 
 	@RequestMapping(value = {"/veiculos"}, method = RequestMethod.GET)
 	public ModelAndView formVehicles() {
@@ -30,7 +27,7 @@ public class VehiclesController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("listUserVehicles");
 		try {
-			vehiclesRepository.save(vehicle);
+//			vehiclesRepository.save(vehicle);
 			modelAndView.setViewName("listUserVehicles");
 		} catch (Exception ex) {
 			modelAndView.setViewName("formVehicles");

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>Update profile</p>
+<form action="/signUp/client" method="post" enctype="multipart/form-data">
+    <input type="text" name="email" placeholder="Email">
+    <input type="text" name="password" placeholder="Senha">
+    <input type="number" name="cpf" placeholder="CPF">
+    <input type="text" name="rg" placeholder="RG">
+    <input type="text" name="name" placeholder="Nome">
+    <input type="text" name="occupation" placeholder="Profissão">
+    <button type="submit">Submit</button>
+</form>
+<form action="/client" method="put" enctype="multipart/form-data">
+    <input type="number" name="cep" placeholder="CEP" value="">
+    <input type="number" name="number" placeholder="Número" value="">
+    <input type="text" name="street" placeholder="Rua" value="">
+    <input type="text" name="district" placeholder="Bairro" value="">
+    <input type="text" name="city" placeholder="Cidade" value="">
+    <input type="text" name="state" placeholder="Estado" value="">
+    <input type="text" name="country" placeholder="País" value="">
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
