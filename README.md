@@ -22,7 +22,8 @@ O Laboratório 2 será um sistema de aluguel de automóveis.
 ![Caso-de-Uso](https://user-images.githubusercontent.com/43525534/133945054-aa223eb2-9139-4fbe-90eb-2ff90f0bbcc3.png)
 
 ### Diagrama de Classe
-![Class_Diagram drawio (1)](https://user-images.githubusercontent.com/43525534/134830442-71edf70b-538b-421b-8341-1f20e0a24f43.png)
+![Class_Diagram drawio (2)](https://user-images.githubusercontent.com/43525534/134830788-2e14b29e-3662-40aa-844e-a7372e4348b8.png)
+
 
 ### Diagrama de Componentes
 ![Diagrama de componentes](https://user-images.githubusercontent.com/43525534/133945060-434ae69a-e3bc-42c7-8e5b-4499deea1bcf.png)
