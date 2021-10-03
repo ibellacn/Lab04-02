@@ -12,6 +12,15 @@ import br.com.lab0102.sistema_de_aluguel_de_veiculos.repositories.VehiclesReposi
 @Controller
 @RequestMapping("/")
 public class VehiclesController {
+	
+	@RequestMapping(value = {"/", "/lista-de-veiculos"}, method = RequestMethod.GET)
+	public ModelAndView listVehicles() {
+		ModelAndView modelAndView = new ModelAndView();
+		List<VehiclesModel> listVehicles = (List<Vehicle>)vehiclesRepository.findAll();
+		modelAndView.setViewName("listUserVehicles");
+		modelAndView.addObject("registration", listVehicles);
+		return modelAndView
+	}
 
 	@RequestMapping(value = {"/veiculos"}, method = RequestMethod.GET)
 	public ModelAndView formVehicles() {
@@ -22,13 +31,30 @@ public class VehiclesController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = {"/lista-de-veiculos"}, method = RequestMethod.POST)
+	@RequestMapping(value = {"/editar/{id}"}, method = RequestMethod.GET)
+	public ModelAndView alter(@PathVariable("id") Long id) {
+		ModelAndView modelAndView = new ModelAndView();
+		VehiclesModel vehicle = vehiclesRepository.findById(id).get();
+		modelAndView.setViewName("formVehicles");
+		modelAndView.addObject("newRegistration", vehicle);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = {"/excluir/{id}"}, method = RequestMethod.GET)
+	public ModelAndView excluide(@PathVariable("id") Long id) {
+		ModelAndView modelAndView = new ModelAndView();
+		VehiclesModel vehicle = vehiclesRepository.findById(id).get();
+		vehiclesRepository.delete(vehicle);
+		return listVehicles();
+	}
+	
+	@RequestMapping(value = {"/salvar"}, method = RequestMethod.POST)
 	public ModelAndView save(VehiclesModel vehicle) {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("listUserVehicles");
 		try {
-//			vehiclesRepository.save(vehicle);
-			modelAndView.setViewName("listUserVehicles");
+			vehiclesRepository.save(vehicle);
+			return listVehicles();
+			
 		} catch (Exception ex) {
 			modelAndView.setViewName("formVehicles");
 			System.out.println(ex);

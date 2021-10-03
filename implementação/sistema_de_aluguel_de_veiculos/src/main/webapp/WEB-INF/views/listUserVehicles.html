@@ -11,7 +11,25 @@
 	</head>
 	
 	<body>
-		<div>Lista de Veículos</div>
-		
+		<div>Lista de Veículos <a th:href="@{/veiculos}">Inserir Novo</a></div>
+		<table border="1">
+			<th>
+				<td>Matrícula</td>
+				<td>Marca</td>
+				<td>Modelo</td>
+				<td>Placa</td>
+				<td>Ano</td>
+			</th>
+			<tr th:each="registro : ${registration}">
+				<td>[[registration.registrationVehicle]]</td>
+				<td>[[registration.brandVehicle]]</td>
+				<td>[[registration.modelVehicle]]</td>
+				<td>[[registration.licensePlateVehicle]]</td>
+				<td>[[registration.ageVehicle]]</td>
+				<td><a th:href="@{/veiculos/editar/{id}(id=${registration.registrationVehicle})}">Editar</a></td>
+				<td><a th:href="@{/veiculos/excluir/{id}(id=${registration.registrationVehicle})}">Excluir</a></td>
+				<td><a th:href="@{/veiculos/pedido/{id}(id=${registration.registrationVehicle})}">Fazer pedido</a></td>
+			</tr>
+		</table>
 	</body>
 </html>

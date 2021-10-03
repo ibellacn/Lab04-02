@@ -18,6 +18,7 @@
 			method="POST"
 			th:object="${newRegistration}"
 		>	
+			<input type="hidden" th:filed=*{id} />
 			<div>
 				<label>Matrícula</label>
 				<input type="text" th:field="*{registrationVehicle}" />
