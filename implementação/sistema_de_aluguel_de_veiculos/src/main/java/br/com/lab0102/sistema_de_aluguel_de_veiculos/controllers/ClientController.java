@@ -1,16 +1,21 @@
 package br.com.lab0102.sistema_de_aluguel_de_veiculos.controllers;
 
-import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.AgentDTO;
+import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.AddressDTO;
 import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.ClientDTO;
+import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.EmployerDTO;
 import br.com.lab0102.sistema_de_aluguel_de_veiculos.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.SessionScope;
+
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping(path = "/client")
 @CrossOrigin(origins = "*")
+@SessionAttributes("clientDTO")
 public class ClientController {
 
     @Autowired
@@ -23,10 +28,49 @@ public class ClientController {
         return "/client/home";
     }
 
+    @PostMapping(path = "/updateAddress/{cpf}")
+    public String updateAddress(@PathVariable Integer cpf, @ModelAttribute AddressDTO addressDTO, Model model) {
+        Boolean response = clientService.updateAddress(addressDTO, cpf);
+
+        if (response){
+            model.addAttribute("addressDTO", addressDTO);
+            return "/client/home";
+        }
+        model.addAttribute("response", false);
+        return "/client/home";
+
+    }
+
+    @PostMapping(path = "/updateEmployer/{cpf}/{id}")
+    public String updateEmployer(@PathVariable Integer cpf, @PathVariable Integer id,
+                                 @ModelAttribute EmployerDTO employerDTO, Model model) {
+        ArrayList<EmployerDTO> employerDTOList = clientService.updateEmployer(employerDTO, cpf, id);
+
+        model.addAttribute("employerDTOList", employerDTOList);
+        return "/client/home";
+    }
+
     @PostMapping(path = "/delete/{cpf}")
     public String delete(@PathVariable Integer cpf, Model model)
     {
         clientService.deleteClient(cpf);
         return "index";
     }
+
+    @PostMapping(path = "/deleteEmployer/{cpf}/{id}")
+    public String deleteEmployer(@PathVariable Integer cpf, @PathVariable Integer id, Model model)
+    {
+        ArrayList<EmployerDTO> employerDTOList = clientService.deleteEmployer(id, cpf);
+        model.addAttribute("employerDTOList", employerDTOList);
+        return "/client/home";
+    }
+
+//    private String returnClient(Integer cpf){
+//        ClientDTO clientDTO = clientService.getClient(cpf);
+//
+//        model.addAttribute("clientDTO", clientDTO);
+//        model.addAttribute("addressDTO", clientDTO.getAddress());
+//
+//        return "/client/home";
+//    }
 }

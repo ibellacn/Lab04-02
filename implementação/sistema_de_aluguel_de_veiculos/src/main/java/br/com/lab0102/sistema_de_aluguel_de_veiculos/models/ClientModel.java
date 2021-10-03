@@ -1,16 +1,16 @@
 package br.com.lab0102.sistema_de_aluguel_de_veiculos.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "client")
 public class ClientModel {
+
+    @Id
+    @Column(name = "cpf", nullable = false)
     private Integer cpf;
 
-    @Column(name = "rg", length = 100, nullable = false)
+    @Column(name = "rg", nullable = false)
     private String rg;
 
     @Column(name = "email", length = 100, nullable = false)
@@ -22,18 +22,22 @@ public class ClientModel {
     @Column(name = "name", length = 100, nullable = false)
     private String name;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private AddressModel address;
+
     public ClientModel() {
     }
 
-    public ClientModel(Integer cpf, String rg, String email, String password, String name) {
+    public ClientModel(Integer cpf, String rg, String email, String password, String name, AddressModel address) {
         this.cpf = cpf;
         this.rg = rg;
         this.email = email;
         this.password = password;
         this.name = name;
+        this.address = address;
     }
 
-    @Id
     public Integer getCpf() {
         return cpf;
     }
@@ -72,5 +76,13 @@ public class ClientModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public AddressModel getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressModel address) {
+        this.address = address;
     }
 }

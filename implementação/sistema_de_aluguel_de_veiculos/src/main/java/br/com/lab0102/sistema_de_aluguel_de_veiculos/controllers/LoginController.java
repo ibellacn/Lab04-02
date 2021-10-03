@@ -1,9 +1,9 @@
 package br.com.lab0102.sistema_de_aluguel_de_veiculos.controllers;
 
+import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.AddressDTO;
 import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.AgentDTO;
 import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.ClientDTO;
 import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.UserDTO;
-import br.com.lab0102.sistema_de_aluguel_de_veiculos.models.ClientModel;
 import br.com.lab0102.sistema_de_aluguel_de_veiculos.services.AgentService;
 import br.com.lab0102.sistema_de_aluguel_de_veiculos.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,16 +38,18 @@ public class LoginController {
         } else {
             ClientDTO clientDTO = clientService.login(email, password);
             model.addAttribute("clientDTO", clientDTO);
+            model.addAttribute("addressDTO", clientDTO.getAddress());
             return "/client/home";
         }
     }
 
     @PostMapping(path = "/signUp/client")
-    public String signUp(@ModelAttribute ClientDTO clientDTO, Model model) {
-        Boolean response = clientService.saveClient(clientDTO);
+    public String signUp(@ModelAttribute ClientDTO clientDTO, AddressDTO addressDTO, Model model) {
+        Boolean response = clientService.saveClient(clientDTO, addressDTO);
         clientDTO.setUserType("client");
         if (response){
             model.addAttribute("clientDTO", clientDTO);
+            model.addAttribute("addressDTO", clientDTO.getAddress());
             return "/client/home";
         }
         model.addAttribute("message", "Solicitação inválida: Email já registrado na plataforma");
