@@ -1,25 +1,45 @@
 package br.com.lab0102.sistema_de_aluguel_de_veiculos.controllers;
 
-import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.AddressDTO;
-import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.ClientDTO;
-import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.EmployerDTO;
+import br.com.lab0102.sistema_de_aluguel_de_veiculos.dtos.*;
 import br.com.lab0102.sistema_de_aluguel_de_veiculos.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 
 @Controller
 @RequestMapping(path = "/client")
 @CrossOrigin(origins = "*")
-@SessionAttributes("clientDTO")
 public class ClientController {
 
     @Autowired
     ClientService clientService;
+
+    @GetMapping(path = "/getAddress/{cpf}")
+    public String getAddress(@PathVariable Integer cpf, Model model) {
+        AddressDTO addressDTO = clientService.getAddressByCpf(cpf);
+
+        ClientDTO clientDTO = new ClientDTO();
+        clientDTO.setCpf(cpf);
+
+        model.addAttribute("addressDTO", addressDTO);
+        model.addAttribute("clientDTO", clientDTO);
+        return "/client/formAddress";
+    }
+
+    @GetMapping(path = "/getEmployers/{cpf}")
+    public String getEmployers(@PathVariable Integer cpf, Model model) {
+        ArrayList<EmployerDTO> employersListDTO = clientService.getAllEmployerByCpf(cpf);
+
+        ClientDTO clientDTO = new ClientDTO();
+        clientDTO.setCpf(cpf);
+
+        model.addAttribute("employersListDTO", employersListDTO);
+        model.addAttribute("clientDTO", clientDTO);
+        return "/client/formEmployer";
+    }
 
     @PostMapping(path = "/update/{cpf}")
     public String update(@PathVariable Integer cpf, @ModelAttribute ClientDTO clientDTO, Model model) {

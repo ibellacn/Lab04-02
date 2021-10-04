@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ClientService {
@@ -46,7 +45,7 @@ public class ClientService {
         return getClientDTO(client);
     }
 
-    private ArrayList<EmployerDTO> getAllEmployerByCpf(Integer cpf) {
+    public ArrayList<EmployerDTO> getAllEmployerByCpf(Integer cpf) {
         ArrayList<EmployerDTO> employerDTOS = new ArrayList<>();
         ArrayList<EmployerModel> employerModels = employerRepository.getAllByClient_Cpf(cpf);
 
@@ -57,6 +56,10 @@ public class ClientService {
             employerDTOS.add(employerDTO);
         }
         return employerDTOS;
+    }
+
+    public AddressDTO getAddressByCpf(Integer cpf) {
+        return getClient(cpf).getAddress();
     }
 
     private Boolean isRegistered(String email) {

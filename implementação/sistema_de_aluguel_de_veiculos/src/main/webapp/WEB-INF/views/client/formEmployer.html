@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>Cadastro Entidade Empregadora</p>
+<form action="#" th:action="@{'/saveEmployer/{cpf}'(cpf=${clientDTO.getCpf()})}" method="post"
+      enctype="multipart/form-data">
+    Nome: <input type="text" name="name" placeholder="Nome"><br>
+    Cargo: <input type="text" name="occupation" placeholder="Cargo">
+    Rendimento Auferido: <input type="number" name="income" placeholder="Rendimento Auferido">
+    <button type="submit">Submit</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th> Nome </th>
+        <th> Cargo </th>
+        <th> Rendimento Auferido </th>
+        <th> Ação </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${employersListDTO.isEmpty()}">
+        <td colspan="2"> Não há empregadores registrados </td>
+    </tr>
+    <tr th:each="employerDTO : ${employersListDTO}">
+        <td><span th:text="${employerDTO.getName()}"> Nome </span></td>
+        <td><span th:text="${employer.getOccupation()}"> Cargo </span></td>
+        <td><span th:text="${employer.getIncome()}"> Rendimento Auferido </span></td>
+        <td>
+            <form action="client/deleteEmployer/{cpf}/${id}" th:action="@{'client/deleteEmployer/{cpf}/{id}'(cpf=${clientDTO.getCpf()}, id=${employerDTO.getId()})}" th:method="delete" >
+                <input type="hidden" name="_method" value="delete" />
+                <button type="submit" id="submitButton">Deletar</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

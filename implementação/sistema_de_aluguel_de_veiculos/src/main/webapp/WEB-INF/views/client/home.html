@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p th:text="'Hello, ' + ${clientDTO.getEmail()}"></p>
+<p th:text="'Olá, ' + ${clientDTO.getEmail()}"></p>
 <p>Alterar informações do perfil</p>
 <form action="#" th:action="@{'client/update/{cpf}'(cpf=${clientDTO.getCpf()})}" method="post" enctype="multipart/form-data">
     CPF: <input type="text" name="rg" placeholder="RG" th:value="${clientDTO.getCpf()}" disabled>
@@ -16,18 +16,15 @@
 </form>
 <form action="#" th:action="@{'client/delete/{cpf}'(cpf=${clientDTO.getCpf()})}" th:method="delete" >
     <input type="hidden" name="_method" value="delete" />
-    <button type="submit" id="submitButton">Deletar Conta</button>
+    <button type="submit" id="deleteAccountButton">Deletar Conta</button>
 </form><br>
-<p>Endereço</p>
-<form action="#" th:action="@{'client/updateAddress/{cpf}'(cpf=${clientDTO.getCpf()})}" method="post" enctype="multipart/form-data">
-    CEP: <input type="number" name="cep" placeholder="CEP" th:value="${addressDTO.getCep()}">
-    País: <input type="text" name="country" placeholder="País" th:value="${addressDTO.getCountry()}">
-    Estado: <input type="text" name="state" placeholder="Estado" th:value="${addressDTO.getState()}">
-    Cidade: <input type="text" name="city" placeholder="Cidade" th:value="${addressDTO.getCity()}">
-    Bairro: <input type="text" name="district" placeholder="Bairro" th:value="${addressDTO.getDistrict()}">
-    Rua: <input type="text" name="street" placeholder="Rua" th:value="${addressDTO.getStreet()}">
-    Número: <input type="number" name="number" placeholder="Número" th:value="${addressDTO.getNumber()}">
-    <button type="submit">Submit</button>
+<form method="get" th:action="@{'client/getAddress/{cpf}'(cpf=${clientDTO.getCpf()})}" th:method="get">
+    <input type="hidden" name="_method" value="get" />
+    <button type="submit" id="getAddressButton">Editar Endereço</button>
+</form>
+<form method="get" th:action="@{'client/getEmployers/{cpf}'(cpf=${clientDTO.getCpf()})}" th:method="get">
+    <input type="hidden" name="_method" value="get" />
+    <button type="submit" id="getEmployersButton">Editar Empregadores</button>
 </form>
 </body>
 </html>

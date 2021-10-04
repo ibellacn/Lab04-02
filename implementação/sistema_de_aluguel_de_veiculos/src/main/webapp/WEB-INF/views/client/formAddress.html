@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>Endereço</p>
+<form action="#" th:action="@{'client/updateAddress/{cpf}'(cpf=${clientDTO.getCpf()})}" method="post" enctype="multipart/form-data">
+    CEP: <input type="number" name="cep" placeholder="CEP" th:value="${addressDTO.getCep()}">
+    País: <input type="text" name="country" placeholder="País" th:value="${addressDTO.getCountry()}">
+    Estado: <input type="text" name="state" placeholder="Estado" th:value="${addressDTO.getState()}">
+    Cidade: <input type="text" name="city" placeholder="Cidade" th:value="${addressDTO.getCity()}">
+    Bairro: <input type="text" name="district" placeholder="Bairro" th:value="${addressDTO.getDistrict()}">
+    Rua: <input type="text" name="street" placeholder="Rua" th:value="${addressDTO.getStreet()}">
+    Número: <input type="number" name="number" placeholder="Número" th:value="${addressDTO.getNumber()}">
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
